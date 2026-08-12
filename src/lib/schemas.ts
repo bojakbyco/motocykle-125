@@ -9,27 +9,34 @@ export const motorcycleSchema = z.object({
   model: z.string(),
   status: z.enum(['current-pl', 'current-eu', 'used-reference', 'verify']),
   marketYear: z.number().int().optional(),
+  productionYear: z.number().int().optional(),
   category: z.enum(['adventure', 'dual-sport', 'enduro', 'naked', 'sport', 'scrambler', 'cruiser', 'scooter']),
   useCases: z.array(z.enum(['city', 'commute', 'weekend', 'touring', 'gravel', 'light-offroad'])),
   price: z
-    .object({ amount: z.number().positive(), currency: z.literal('PLN'), asOf: z.string(), kind: z.enum(['msrp', 'dealer']) })
+    .object({ amount: z.number().positive(), regularAmount: z.number().positive().optional(), currency: z.literal('PLN'), asOf: z.iso.date(), kind: z.enum(['msrp', 'dealer', 'promotional', 'from']), note: z.string().optional() })
     .optional(),
   engine: z.object({
     capacityCc: z.number().positive().max(125),
-    powerKw: z.number().positive().max(11),
+    powerKw: z.number().positive().max(11).optional(),
     torqueNm: z.number().positive().optional(),
-    cooling: z.enum(['air', 'oil', 'liquid']),
-    gearbox: z.union([z.literal(5), z.literal(6)]),
+    cooling: z.enum(['air', 'oil', 'liquid']).optional(),
+    gearbox: z.union([z.literal(5), z.literal(6)]).optional(),
+    transmission: z.enum(['manual', 'cvt', 'automatic-belt']).default('manual'),
   }),
   dimensions: z.object({
     wetWeightKg: z.number().positive().optional(),
     dryWeightKg: z.number().positive().optional(),
+    weightKg: z.number().positive().optional(),
+    weightDefinition: z.string().optional(),
+    weightWithoutFuelKg: z.number().positive().optional(),
+    weightFullyFueledKg: z.number().positive().optional(),
     seatHeightMm: z.number().positive().optional(),
     groundClearanceMm: z.number().positive().optional(),
     tankL: z.number().positive().optional(),
   }),
   chassis: z.object({
-    abs: z.enum(['none', 'front', 'dual', 'cornering']),
+    abs: z.enum(['none', 'front', 'dual', 'generic', 'unverified', 'cornering', 'switchable']),
+    absNote: z.string().optional(),
     tractionControl: z.boolean().optional(),
     frontWheelIn: z.number().positive().optional(),
     rearWheelIn: z.number().positive().optional(),
@@ -55,7 +62,7 @@ export const motorcycleSchema = z.object({
     limitations: z.array(z.string()).min(1),
   }),
   sourceUrls: z.array(z.string().url()).min(1),
-  verifiedAt: z.string(),
+  verifiedAt: z.iso.date(),
   summary: z.string(),
 });
 
