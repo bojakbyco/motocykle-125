@@ -1,0 +1,4 @@
+---
+{"id":"yamaha-wr125r","slug":"yamaha-wr125r","brand":"Yamaha","model":"WR125R","status":"current-pl","marketYear":2026,"category":"dual-sport","useCases":["commute","weekend","gravel","light-offroad"],"engine":{"capacityCc":125,"powerKw":10.7,"cooling":"liquid","gearbox":6},"dimensions":{},"chassis":{"abs":"dual","frontWheelIn":21,"rearWheelIn":18,"wheelType":"spoked"},"equipment":{"led":true},"editorial":{"beginnerFriendliness":3,"passengerComfort":1,"touringReadiness":2,"gravelReadiness":5,"cityAgility":4,"tallRiderFit":5,"partsAvailability":5,"limitations":["Wysoka kanapa i brak turystycznej ochrony przed wiatrem."]},"sourceUrls":["https://www.yamaha-motor.eu/pl/pl/motorcycles/adventure/pdp/wr125r/"],"verifiedAt":"2026-08-11","summary":"Nowoczesny dual-sport MY 2026 do dojazdów, szutrów i lekkiego terenu."}
+---
+WR125R jest uniwersalny, ale priorytet daje jeździe solo i poza równym asfaltem.

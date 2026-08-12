@@ -1,0 +1,4 @@
+---
+{"id":"benelli-bkx-125","slug":"benelli-bkx-125","brand":"Benelli","model":"BKX 125","status":"current-pl","marketYear":2025,"category":"adventure","useCases":["commute","weekend","gravel"],"engine":{"capacityCc":125,"powerKw":11,"cooling":"liquid","gearbox":6},"dimensions":{},"chassis":{"abs":"dual","frontWheelIn":19,"rearWheelIn":17,"wheelType":"spoked"},"equipment":{"led":true,"usb":true,"windscreen":true},"editorial":{"beginnerFriendliness":4,"passengerComfort":3,"touringReadiness":3,"gravelReadiness":4,"cityAgility":4,"tallRiderFit":4,"partsAvailability":4,"limitations":["Kompaktowa osłona przed wiatrem ogranicza komfort na szybszych trasach."]},"sourceUrls":["https://www.benelli.com/pl-pl/products/bkx-125"],"verifiedAt":"2026-08-11","summary":"Nowoczesna, lekka w odbiorze 125 łącząca miejską zwinność z kołami na gorsze drogi."}
+---
+BKX ma pełną moc klasy 125 i szutrowy charakter, ale nie zastępuje motocykla enduro.

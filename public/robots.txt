@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://motocykle125.pl/sitemap-index.xml

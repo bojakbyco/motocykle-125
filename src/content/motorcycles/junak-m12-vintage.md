@@ -1,0 +1,4 @@
+---
+{"id":"junak-m12-vintage","slug":"junak-m12-vintage","brand":"Junak","model":"M12 Vintage ABS","status":"current-pl","marketYear":2025,"category":"cruiser","useCases":["city","commute","weekend"],"engine":{"capacityCc":125,"powerKw":7.5,"cooling":"air","gearbox":5},"dimensions":{},"chassis":{"abs":"dual","wheelType":"cast"},"equipment":{"led":true},"editorial":{"beginnerFriendliness":5,"passengerComfort":3,"touringReadiness":2,"gravelReadiness":1,"cityAgility":3,"tallRiderFit":2,"partsAvailability":4,"limitations":["Osiągi i pozycja nie sprzyjają szybszej turystyce."]},"sourceUrls":["https://www.junak.com.pl/katalog/motocykle/"],"verifiedAt":"2026-08-11","summary":"Niski, spokojny cruiser o klasycznej stylistyce i łatwej obsłudze."}
+---
+M12 Vintage wybiera się dla dostępności i charakteru, nie dla dynamiki.

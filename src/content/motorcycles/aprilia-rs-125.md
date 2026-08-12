@@ -1,0 +1,4 @@
+---
+{"id":"aprilia-rs-125","slug":"aprilia-rs-125","brand":"Aprilia","model":"RS 125","status":"current-pl","marketYear":2025,"category":"sport","useCases":["city","weekend"],"engine":{"capacityCc":124,"powerKw":11,"cooling":"liquid","gearbox":6},"dimensions":{},"chassis":{"abs":"dual","frontWheelIn":17,"rearWheelIn":17,"wheelType":"cast"},"equipment":{"led":true},"editorial":{"beginnerFriendliness":3,"passengerComfort":1,"touringReadiness":1,"gravelReadiness":1,"cityAgility":4,"tallRiderFit":2,"partsAvailability":4,"limitations":["Sportowa ergonomia męczy w korku i na dłuższym odcinku."]},"sourceUrls":["https://www.aprilia.com/pl_PL/models/rs-125/"],"verifiedAt":"2026-08-11","summary":"Pełnoprawnie wyglądający mały sportowiec dla jazdy solo po asfalcie."}
+---
+RS 125 nie jest rozsądnym wyborem do kufrów, pasażera ani gorszych dróg.

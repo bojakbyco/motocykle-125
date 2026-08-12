@@ -1,0 +1,4 @@
+---
+{"id":"benelli-leoncino-125","slug":"benelli-leoncino-125","brand":"Benelli","model":"Leoncino 125","status":"current-pl","marketYear":2025,"category":"scrambler","useCases":["city","commute","weekend"],"engine":{"capacityCc":125,"powerKw":9.4,"cooling":"liquid","gearbox":6},"dimensions":{},"chassis":{"abs":"dual","frontWheelIn":17,"rearWheelIn":17,"wheelType":"cast"},"equipment":{"led":true},"editorial":{"beginnerFriendliness":5,"passengerComfort":2,"touringReadiness":2,"gravelReadiness":2,"cityAgility":5,"tallRiderFit":2,"partsAvailability":4,"limitations":["Scramblerowa stylistyka nie oznacza terenowych możliwości."]},"sourceUrls":["https://www.benelli.com/pl-pl/products/leoncino-125"],"verifiedAt":"2026-08-11","summary":"Przyjazny, stylowy miejski scrambler dla początkującego kierowcy."}
+---
+Leoncino wybiera się dla łatwości i wyglądu, nie do wymagającego szutru.

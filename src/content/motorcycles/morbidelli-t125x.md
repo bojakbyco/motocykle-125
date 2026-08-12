@@ -1,0 +1,4 @@
+---
+{"id":"morbidelli-t125x","slug":"morbidelli-t125x","brand":"Morbidelli","model":"T125X","status":"verify","marketYear":2025,"category":"adventure","useCases":["weekend","touring","gravel"],"engine":{"capacityCc":125,"powerKw":11,"cooling":"liquid","gearbox":6},"dimensions":{},"chassis":{"abs":"dual","wheelType":"spoked"},"equipment":{"led":true,"windscreen":true,"handguards":true},"editorial":{"beginnerFriendliness":3,"passengerComfort":3,"touringReadiness":4,"gravelReadiness":4,"cityAgility":3,"tallRiderFit":4,"partsAvailability":2,"limitations":["Sieć sprzedaży i serwisu w Polsce wymaga potwierdzenia."]},"sourceUrls":["https://www.morbidelli.com/"],"verifiedAt":"2026-08-11","summary":"Adventure o terenowej stylistyce, którego dostępność w Polsce wymaga sprawdzenia przed wizytą."}
+---
+Nie podajemy niepotwierdzonej ceny ani masy. Sprawdź ofertę importera.

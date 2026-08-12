@@ -1,0 +1,25 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const guides = await getCollection('guides');
+  return guides.map((entry) => ({ params: { slug: entry.id } }));
+}
+
+const guides = await getCollection('guides');
+const slug = Astro.params?.slug;
+const entry = guides.find((item) => item.id === slug) ?? guides[0];
+const { Content } = await render(entry);
+const g = entry.data;
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: g.title,
+  description: g.description,
+  datePublished: g.publishedAt.toISOString(),
+  dateModified: g.updatedAt.toISOString(),
+  inLanguage: 'pl-PL',
+};
+---
+<BaseLayout title={g.title} description={g.description} jsonLd={ld}><article><header class="wrap max-w-5xl py-14"><p class="eyebrow">Poradnik · {g.readingMinutes} min</p><h1 class="mt-4 max-w-4xl font-serif text-4xl leading-tight font-bold sm:text-6xl">{g.title}</h1><p class="mt-6 max-w-3xl text-xl leading-8 text-muted">{g.description}</p><p class="mt-5 text-sm text-muted">Aktualizacja: {g.updatedAt.toLocaleDateString('pl-PL')}</p></header><div class="wrap"><div class="prose-custom border-t border-ink/15 pt-8"><Content/></div></div></article></BaseLayout>

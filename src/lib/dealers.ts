@@ -1,0 +1,9 @@
+export type Dealer={name:string;brands:string[];address:string;city:string;postcode:string;region:string;phone:string;website:string;lat:number;lng:number;source:string;verifiedAt:string};
+export const dealers:Dealer[]=[
+ {name:'Honda Plaza',brands:['Honda'],address:'Malownicza 29A',city:'Warszawa',postcode:'02-272',region:'mazowieckie',phone:'+48224311111',website:'https://hondaplaza.pl/',lat:52.171,lng:20.968,source:'https://hondaplaza.pl/kontakt/',verifiedAt:'2026-08-11'},
+ {name:'Liberty Motors Warszawa',brands:['Yamaha','KTM','Aprilia'],address:'Prymasa Tysiąclecia 81A',city:'Warszawa',postcode:'01-242',region:'mazowieckie',phone:'+48222998800',website:'https://libertymotors.pl/',lat:52.228,lng:20.955,source:'https://libertymotors.pl/kontakt',verifiedAt:'2026-08-11'},
+ {name:'Moto Mio',brands:['Benelli'],address:'Puławska 34',city:'Piaseczno',postcode:'05-500',region:'mazowieckie',phone:'+48227156001',website:'https://motomio.pl/',lat:52.079,lng:21.027,source:'https://motomio.pl/',verifiedAt:'2026-08-11'},
+ {name:'Junak Warszawa',brands:['Junak'],address:'Modlińska 335A',city:'Warszawa',postcode:'03-151',region:'mazowieckie',phone:'+48226766666',website:'https://www.junak.com.pl/',lat:52.329,lng:20.958,source:'https://www.junak.com.pl/dealerzy/',verifiedAt:'2026-08-11'},
+ {name:'Yamaha POLand POSITION',brands:['Yamaha'],address:'Połczyńska 120C',city:'Warszawa',postcode:'01-304',region:'mazowieckie',phone:'+48226649900',website:'https://www.yamaha-motor.eu/pl/pl/dealer-locator/',lat:52.214,lng:20.884,source:'https://www.yamaha-motor.eu/pl/pl/dealer-locator/',verifiedAt:'2026-08-11'},
+ {name:'Honda Wyszomirski',brands:['Honda'],address:'Puławska 44D',city:'Piaseczno',postcode:'05-500',region:'mazowieckie',phone:'+48227573030',website:'https://www.honda.pl/motorcycles/dealers.html',lat:52.075,lng:21.024,source:'https://www.honda.pl/motorcycles/dealers.html',verifiedAt:'2026-08-11'},
+];

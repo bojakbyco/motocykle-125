@@ -1,0 +1,6 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+export function getStaticPaths(){return [{params:{wojewodztwo:'mazowieckie'},props:{region:'mazowieckie'}}]}
+const {region}=Astro.props as {region:string};
+---
+<BaseLayout title={`Dealerzy 125 — ${region}`} description={`Dealerzy motocykli 125 w województwie ${region}.`}><section class="wrap py-16"><p class="eyebrow">Baza regionalna</p><h1 class="display mt-3 capitalize">{region}</h1><p class="mt-6 text-lg text-muted">Pilotażowe punkty dla tego województwa są dostępne w głównej wyszukiwarce.</p><a class="btn mt-7" href="/dealerzy">Przejdź do wyszukiwarek</a></section></BaseLayout>

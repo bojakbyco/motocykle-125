@@ -1,0 +1,4 @@
+---
+{"id":"yamaha-r125","slug":"yamaha-r125","brand":"Yamaha","model":"R125","status":"current-pl","marketYear":2025,"category":"sport","useCases":["city","commute","weekend"],"engine":{"capacityCc":125,"powerKw":11,"cooling":"liquid","gearbox":6},"dimensions":{},"chassis":{"abs":"dual","tractionControl":true,"frontWheelIn":17,"rearWheelIn":17,"wheelType":"cast"},"equipment":{"led":true},"editorial":{"beginnerFriendliness":3,"passengerComfort":1,"touringReadiness":1,"gravelReadiness":1,"cityAgility":4,"tallRiderFit":2,"partsAvailability":5,"limitations":["Pochylona pozycja i mała kanapa pasażera ograniczają codzienny komfort."]},"sourceUrls":["https://www.yamaha-motor.eu/pl/pl/motorcycles/supersport/pdp/r125/"],"verifiedAt":"2026-08-11","summary":"Sportowa 125 z bogatą elektroniką dla kierowcy stawiającego na wygląd i osiągi."}
+---
+R125 daje sportowe doświadczenie kosztem wygody i wszechstronności.

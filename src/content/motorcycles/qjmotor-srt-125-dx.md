@@ -1,0 +1,4 @@
+---
+{"id":"qjmotor-srt-125-dx","slug":"qjmotor-srt-125-dx","brand":"QJMotor","model":"SRT 125 DX","status":"verify","marketYear":2025,"category":"adventure","useCases":["commute","weekend","touring","gravel"],"engine":{"capacityCc":125,"powerKw":11,"cooling":"liquid","gearbox":6},"dimensions":{},"chassis":{"abs":"dual","wheelType":"spoked"},"equipment":{"led":true,"usb":true,"windscreen":true,"handguards":true},"editorial":{"beginnerFriendliness":3,"passengerComfort":4,"touringReadiness":4,"gravelReadiness":4,"cityAgility":2,"tallRiderFit":5,"partsAvailability":3,"limitations":["Polska dostępność, cena i pełna specyfikacja wymagają potwierdzenia."]},"sourceUrls":["https://www.qjmotor.com/"],"verifiedAt":"2026-08-11","summary":"Pełnowymiarowa propozycja adventure, publikowana ostrożnie do czasu potwierdzenia polskiej oferty."}
+---
+Model pozostaje oznaczony jako „do weryfikacji”; nie traktujemy go jako pewnej oferty salonowej.

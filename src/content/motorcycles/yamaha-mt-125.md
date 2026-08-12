@@ -1,0 +1,4 @@
+---
+{"id":"yamaha-mt-125","slug":"yamaha-mt-125","brand":"Yamaha","model":"MT-125","status":"current-pl","marketYear":2025,"category":"naked","useCases":["city","commute","weekend"],"engine":{"capacityCc":125,"powerKw":11,"cooling":"liquid","gearbox":6},"dimensions":{},"chassis":{"abs":"dual","tractionControl":true,"frontWheelIn":17,"rearWheelIn":17,"wheelType":"cast"},"equipment":{"led":true},"editorial":{"beginnerFriendliness":4,"passengerComfort":2,"touringReadiness":2,"gravelReadiness":1,"cityAgility":5,"tallRiderFit":3,"partsAvailability":5,"limitations":["Sportowa pozycja i cena mogą nie pasować do budżetowego dojazdu."]},"sourceUrls":["https://www.yamaha-motor.eu/pl/pl/motorcycles/hyper-naked/pdp/mt-125/"],"verifiedAt":"2026-08-11","summary":"Dynamiczny miejski naked z rozbudowanym wyposażeniem bezpieczeństwa."}
+---
+MT-125 premiuje osiągi i prowadzenie, nie komfort pasażera ani szuter.

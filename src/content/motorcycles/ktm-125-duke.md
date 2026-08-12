@@ -1,0 +1,4 @@
+---
+{"id":"ktm-125-duke","slug":"ktm-125-duke","brand":"KTM","model":"125 Duke","status":"current-pl","marketYear":2025,"category":"naked","useCases":["city","commute","weekend"],"engine":{"capacityCc":125,"powerKw":11,"cooling":"liquid","gearbox":6},"dimensions":{},"chassis":{"abs":"dual","frontWheelIn":17,"rearWheelIn":17,"wheelType":"cast"},"equipment":{"led":true},"editorial":{"beginnerFriendliness":4,"passengerComfort":2,"touringReadiness":2,"gravelReadiness":1,"cityAgility":5,"tallRiderFit":4,"partsAvailability":5,"limitations":["Twarda, sportowa charakterystyka nie sprzyja spokojnej turystyce."]},"sourceUrls":["https://www.ktm.com/en-pl/models/naked-bike/2025-ktm-125-duke.html"],"verifiedAt":"2026-08-11","summary":"Wyrazisty naked o sportowym prowadzeniu i ergonomii dobrej również dla wyższych osób."}
+---
+125 Duke najlepiej czuje się w mieście i na krętej drodze.

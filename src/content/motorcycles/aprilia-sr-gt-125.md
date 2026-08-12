@@ -1,0 +1,4 @@
+---
+{"id":"aprilia-sr-gt-125","slug":"aprilia-sr-gt-125","brand":"Aprilia","model":"SR GT 125","status":"current-pl","marketYear":2025,"category":"scooter","useCases":["city","commute","weekend"],"engine":{"capacityCc":125,"powerKw":11,"cooling":"liquid","gearbox":5},"dimensions":{},"chassis":{"abs":"front","frontWheelIn":14,"rearWheelIn":13,"wheelType":"cast"},"equipment":{"led":true,"windscreen":true},"editorial":{"beginnerFriendliness":4,"passengerComfort":3,"touringReadiness":3,"gravelReadiness":2,"cityAgility":5,"tallRiderFit":3,"partsAvailability":4,"limitations":["Adventure’owy wygląd nie czyni z niego motocykla terenowego."]},"sourceUrls":["https://www.aprilia.com/pl_PL/models/sr-gt/sr-gt-125/"],"verifiedAt":"2026-08-11","summary":"Sportowy skuter miejski z większym prześwitem i pełną mocą klasy 125."}
+---
+SR GT lepiej znosi miejski bruk, ale pozostaje skuterem asfaltowym.

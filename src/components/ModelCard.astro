@@ -1,0 +1,11 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { categoryLabels,statusLabels } from '../lib/labels';
+const {entry, compact=false}=Astro.props as {entry:CollectionEntry<'motorcycles'>;compact?:boolean}; const m=entry.data;
+---
+<article class="card flex h-full flex-col gap-4" data-model data-category={m.category} data-status={m.status} data-brand={m.brand} data-use={m.useCases.join(',')}>
+ <div class="flex items-start justify-between gap-3"><div><p class="eyebrow">{categoryLabels[m.category]}</p><h2 class="mt-1 font-serif text-2xl font-bold"><a href={`/motocykle/${m.slug}`}>{m.brand} {m.model}</a></h2></div><span class:list={['badge shrink-0',m.status==='verify'&&'border-accent text-accent']}>{statusLabels[m.status]}</span></div>
+ <p class="text-sm leading-6 text-muted">{m.summary}</p>
+ {!compact&&<dl class="grid grid-cols-2 gap-3 border-y border-ink/10 py-3 text-sm"><div><dt class="text-muted">Moc</dt><dd class="font-bold">{m.engine.powerKw} kW</dd></div><div><dt class="text-muted">Skrzynia</dt><dd class="font-bold">{m.engine.gearbox} biegów</dd></div></dl>}
+ <div class="mt-auto flex gap-2"><a class="btn flex-1" href={`/motocykle/${m.slug}`}>Zobacz model</a><a class="btn-alt px-3" aria-label={`Porównaj ${m.brand} ${m.model}`} href={`/porownaj?modele=${m.slug}`}>＋</a></div>
+</article>

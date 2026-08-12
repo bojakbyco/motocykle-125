@@ -1,0 +1,4 @@
+---
+{"id":"yamaha-nmax-125","slug":"yamaha-nmax-125","brand":"Yamaha","model":"NMAX 125","status":"current-pl","marketYear":2025,"category":"scooter","useCases":["city","commute"],"engine":{"capacityCc":125,"powerKw":9,"cooling":"liquid","gearbox":5},"dimensions":{},"chassis":{"abs":"dual","tractionControl":true,"frontWheelIn":13,"rearWheelIn":13,"wheelType":"cast"},"equipment":{"led":true,"usb":true,"windscreen":true},"editorial":{"beginnerFriendliness":5,"passengerComfort":4,"touringReadiness":2,"gravelReadiness":1,"cityAgility":5,"tallRiderFit":2,"partsAvailability":5,"limitations":["Małe koła i miejska geometria nie lubią nierównych dróg."]},"sourceUrls":["https://www.yamaha-motor.eu/pl/pl/scooters/sport/pdp/nmax-125/"],"verifiedAt":"2026-08-11","summary":"Zwinny miejski skuter ze współczesnymi systemami bezpieczeństwa."}
+---
+NMAX jest alternatywą dla motocykla, gdy priorytetem są proste dojazdy.

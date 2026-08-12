@@ -1,0 +1,4 @@
+---
+{"id":"ktm-125-enduro-r","slug":"ktm-125-enduro-r","brand":"KTM","model":"125 Enduro R","status":"current-pl","marketYear":2026,"category":"enduro","useCases":["gravel","light-offroad","weekend"],"engine":{"capacityCc":125,"powerKw":11,"cooling":"liquid","gearbox":6},"dimensions":{},"chassis":{"abs":"dual","frontWheelIn":21,"rearWheelIn":18,"wheelType":"spoked"},"equipment":{"led":true},"editorial":{"beginnerFriendliness":2,"passengerComfort":1,"touringReadiness":1,"gravelReadiness":5,"cityAgility":3,"tallRiderFit":5,"partsAvailability":5,"limitations":["Terenowy charakter oznacza kompromisy w codziennym komforcie."]},"sourceUrls":["https://www.ktm.com/en-pl/models/dual-sport/2026-ktm-125-enduror/technical-specifications.html"],"verifiedAt":"2026-08-11","summary":"Terenowo nastawiona nowość MY 2026 dla kierowców stawiających na jazdę poza asfaltem."}
+---
+To wyspecjalizowany wybór, nie turystyczny motocykl z samą stylistyką enduro.

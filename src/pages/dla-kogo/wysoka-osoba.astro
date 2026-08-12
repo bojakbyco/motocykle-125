@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ModelCard from '../../components/ModelCard.astro';
+import { intentPages } from '../../lib/intent-pages';
+
+const page = intentPages['wysoka-osoba'];
+const models = (await getCollection('motorcycles')).filter((x) => x.data.status === 'current-pl' && page.filter(x.data)).slice(0, 9);
+---
+<BaseLayout title={page.title} description={page.desc}>
+  <section class="wrap py-12">
+    <p class="eyebrow">Ręcznie przygotowana lista</p>
+    <h1 class="display mt-3">{page.title}</h1>
+    <p class="mt-5 max-w-2xl text-lg text-muted">{page.desc} To punkt startu — ostateczną decyzję poprzedź przymiarką i jazdą próbną.</p>
+    <div class="mt-7 flex gap-3"><a class="btn" href="/kreator">Dopasuj dokładniej</a><a class="btn-alt" href={`/poradniki/${page.guide}`}>Przeczytaj poradnik</a></div>
+    <div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">{models.map((m) => <ModelCard entry={m} />)}</div>
+  </section>
+</BaseLayout>

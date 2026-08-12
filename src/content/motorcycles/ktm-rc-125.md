@@ -1,0 +1,4 @@
+---
+{"id":"ktm-rc-125","slug":"ktm-rc-125","brand":"KTM","model":"RC 125","status":"current-eu","marketYear":2025,"category":"sport","useCases":["city","weekend"],"engine":{"capacityCc":125,"powerKw":11,"cooling":"liquid","gearbox":6},"dimensions":{},"chassis":{"abs":"dual","frontWheelIn":17,"rearWheelIn":17,"wheelType":"cast"},"equipment":{"led":true},"editorial":{"beginnerFriendliness":3,"passengerComfort":1,"touringReadiness":1,"gravelReadiness":1,"cityAgility":4,"tallRiderFit":3,"partsAvailability":5,"limitations":["Polską dostępność rocznika trzeba potwierdzić; sportowa pozycja ogranicza wygodę."]},"sourceUrls":["https://www.ktm.com/en-pl/models/supersport/ktm-rc-125.html"],"verifiedAt":"2026-08-11","summary":"Sportowa 125 o wyrazistym podwoziu, ujęta jako oferta europejska do potwierdzenia lokalnie."}
+---
+RC 125 jest przeznaczony głównie do jazdy solo po asfalcie.

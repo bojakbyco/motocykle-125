@@ -1,0 +1,4 @@
+---
+import {getCollection} from 'astro:content'; import BaseLayout from '../../layouts/BaseLayout.astro'; const guides=(await getCollection('guides')).sort((a,b)=>b.data.updatedAt.valueOf()-a.data.updatedAt.valueOf());
+---
+<BaseLayout title="Poradniki o motocyklach 125" description="Rzetelne poradniki zakupowe o ergonomii, budżecie, wyposażeniu i codziennym używaniu motocykli 125."><section class="wrap py-12"><p class="eyebrow">Wiedza do decyzji</p><h1 class="display mt-3">Poradniki</h1><div class="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">{guides.map(g=><article class="card"><p class="eyebrow">{g.data.readingMinutes} min czytania</p><h2 class="mt-3 font-serif text-2xl font-bold"><a href={`/poradniki/${g.id}`}>{g.data.title}</a></h2><p class="mt-4 text-sm leading-6 text-muted">{g.data.description}</p><a class="mt-6 inline-flex font-bold underline" href={`/poradniki/${g.id}`}>Czytaj →</a></article>)}</div></section></BaseLayout>

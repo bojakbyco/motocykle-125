@@ -1,0 +1,4 @@
+---
+{"id":"rieju-aventura-125","slug":"rieju-aventura-125","brand":"Rieju","model":"Aventura 125","status":"current-eu","marketYear":2025,"category":"adventure","useCases":["weekend","touring","gravel"],"engine":{"capacityCc":125,"powerKw":11,"cooling":"liquid","gearbox":6},"dimensions":{},"chassis":{"abs":"dual","wheelType":"spoked"},"equipment":{"led":true,"usb":true,"windscreen":true,"handguards":true},"editorial":{"beginnerFriendliness":3,"passengerComfort":4,"touringReadiness":5,"gravelReadiness":4,"cityAgility":2,"tallRiderFit":5,"partsAvailability":2,"limitations":["Dostępność u polskich dealerów może być ograniczona."]},"sourceUrls":["https://rieju.com/en/adventure/125/"],"verifiedAt":"2026-08-11","summary":"Turystycznie ukierunkowana 125 z europejskiej oferty, dobra dla wysokich kierowców."}
+---
+Przed zakupem potwierdź polską homologację, cenę i termin dostawy.

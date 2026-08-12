@@ -1,0 +1,4 @@
+---
+{"id":"zontes-zt125-c","slug":"zontes-zt125-c","brand":"Zontes","model":"ZT125-C","status":"current-pl","marketYear":2025,"category":"cruiser","useCases":["city","commute","weekend"],"engine":{"capacityCc":125,"powerKw":10.8,"cooling":"liquid","gearbox":6},"dimensions":{},"chassis":{"abs":"dual","frontWheelIn":16,"rearWheelIn":15,"wheelType":"cast"},"equipment":{"led":true},"editorial":{"beginnerFriendliness":4,"passengerComfort":3,"touringReadiness":2,"gravelReadiness":1,"cityAgility":3,"tallRiderFit":2,"partsAvailability":3,"limitations":["Niska pozycja może być ciasna dla bardzo wysokiej osoby."]},"sourceUrls":["https://zontes.pl/"],"verifiedAt":"2026-08-11","summary":"Nowoczesny cruiser 125 z niską kanapą i rozbudowanym wyposażeniem."}
+---
+Model kierowany jest na asfalt i spokojne wyjazdy, nie na szuter.

@@ -1,0 +1,26 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { categoryLabels, statusLabels, useLabels, formatValue } from '../../lib/labels';
+
+export async function getStaticPaths() {
+  const motorcycles = await getCollection('motorcycles');
+  return motorcycles.map((entry) => ({ params: { slug: entry.data.slug } }));
+}
+
+const motorcycles = await getCollection('motorcycles');
+const slug = Astro.params?.slug;
+const entry = motorcycles.find((item) => item.data.slug === slug) ?? motorcycles[0];
+const m = entry.data;
+const { Content } = await render(entry);
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: `${m.brand} ${m.model}`,
+  description: m.summary,
+  brand: { '@type': 'Brand', name: m.brand },
+  category: 'Motocykl 125 cm³',
+  ...(m.price ? { offers: { '@type': 'Offer', price: m.price.amount, priceCurrency: 'PLN' } } : {}),
+};
+---
+<BaseLayout title={`${m.brand} ${m.model} — dane, opinia i porównanie`} description={m.summary} jsonLd={ld}><article><header class="border-b border-ink/15 py-12"><div class="wrap"><div class="flex flex-wrap gap-2"><span class="badge">{categoryLabels[m.category]}</span><span class:list={['badge',m.status==='verify'&&'border-accent text-accent']}>{statusLabels[m.status]}</span>{m.marketYear&&<span class="badge">Rocznik {m.marketYear}</span>}</div><h1 class="display mt-5">{m.brand}<br/><em class="text-accent">{m.model}</em></h1><p class="mt-6 max-w-2xl text-xl leading-8 text-muted">{m.summary}</p><div class="mt-7 flex flex-wrap gap-3"><a class="btn" href={`/porownaj?modele=${m.slug}`}>Dodaj do porównania</a><a class="btn-alt" href={`/dealerzy?marka=${m.brand}`}>Znajdź dealera</a></div></div></header><div class="wrap grid gap-10 py-12 lg:grid-cols-[1fr_340px]"><div><section><h2 class="font-serif text-3xl font-bold">Najważniejsze dane</h2><dl class="mt-5 grid sm:grid-cols-2"><div class="border-t border-ink/15 py-4"><dt class="text-sm text-muted">Silnik</dt><dd class="font-bold">{m.engine.capacityCc} cm³ · {m.engine.powerKw} kW</dd></div><div class="border-t border-ink/15 py-4"><dt class="text-sm text-muted">Chłodzenie / skrzynia</dt><dd class="font-bold">{m.engine.cooling} · {m.engine.gearbox} biegów</dd></div><div class="border-t border-ink/15 py-4"><dt class="text-sm text-muted">ABS</dt><dd class="font-bold">{m.chassis.abs}</dd></div><div class="border-t border-ink/15 py-4"><dt class="text-sm text-muted">Masa</dt><dd class="font-bold">{m.dimensions.wetWeightKg?`${m.dimensions.wetWeightKg} kg (mokro)`:m.dimensions.dryWeightKg?`${m.dimensions.dryWeightKg} kg (sucho)`:'brak potwierdzonych danych'}</dd></div><div class="border-t border-ink/15 py-4"><dt class="text-sm text-muted">Wysokość siedzenia</dt><dd class="font-bold">{formatValue(m.dimensions.seatHeightMm,' mm')}</dd></div><div class="border-t border-ink/15 py-4"><dt class="text-sm text-muted">Cena</dt><dd class="font-bold">{m.price?`${m.price.amount.toLocaleString('pl-PL')} zł (${m.price.asOf})`:'do potwierdzenia u dealera'}</dd></div></dl></section><section class="prose-custom mt-12"><Content/></section><section class="mt-12"><h2 class="font-serif text-3xl font-bold">Ocena redakcyjna</h2><div class="mt-5 grid gap-3 sm:grid-cols-2">{Object.entries({Miasto:m.editorial.cityAgility,Turystyka:m.editorial.touringReadiness,Szutry:m.editorial.gravelReadiness,'Dla początkującego':m.editorial.beginnerFriendliness,'Dla wysokiej osoby':m.editorial.tallRiderFit,Pasażer:m.editorial.passengerComfort}).map(([l,v])=><div class="flex justify-between border-b border-ink/15 py-3"><span>{l}</span><strong>{v}/5</strong></div>)}</div><h3 class="mt-8 text-xl font-bold">Ograniczenia</h3><ul class="mt-3 list-disc pl-5 text-muted">{m.editorial.limitations.map(x=><li>{x}</li>)}</ul></section></div><aside class="card h-fit"><p class="eyebrow">Jakość danych</p><h2 class="mt-2 font-serif text-2xl font-bold">Sprawdzone {m.verifiedAt}</h2><p class="mt-3 text-sm leading-6 text-muted">Status: {statusLabels[m.status]}. Specyfikacja i cena mogą różnić się zależnie od rocznika oraz wersji.</p><h3 class="mt-5 font-bold">Źródła</h3><ul class="mt-2 grid gap-2 text-sm">{m.sourceUrls.map((url,i)=><li><a class="text-accent underline" href={url} rel="nofollow noopener" target="_blank">Źródło {i+1} ↗</a></li>)}</ul><p class="mt-6 text-sm"><strong>Zastosowanie:</strong><br/>{m.useCases.map(x=>useLabels[x]).join(' · ')}</p></aside></div></article></BaseLayout>

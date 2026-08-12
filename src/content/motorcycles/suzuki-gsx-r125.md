@@ -1,0 +1,4 @@
+---
+{"id":"suzuki-gsx-r125","slug":"suzuki-gsx-r125","brand":"Suzuki","model":"GSX-R125","status":"current-pl","marketYear":2025,"category":"sport","useCases":["city","commute","weekend"],"engine":{"capacityCc":124,"powerKw":11,"cooling":"liquid","gearbox":6},"dimensions":{"wetWeightKg":137,"seatHeightMm":785,"tankL":11},"chassis":{"abs":"dual","frontWheelIn":17,"rearWheelIn":17,"wheelType":"cast"},"equipment":{"led":true},"editorial":{"beginnerFriendliness":4,"passengerComfort":1,"touringReadiness":1,"gravelReadiness":1,"cityAgility":5,"tallRiderFit":2,"partsAvailability":5,"limitations":["Niska, zwarta ergonomia może krępować wysoką osobę."]},"sourceUrls":["https://motocykle.suzuki.pl/motocykle/gsx-r125"],"verifiedAt":"2026-08-11","summary":"Lekki sportowy model z niską kanapą, łatwy do opanowania dla niższej osoby."}
+---
+GSX-R125 jest zwinny i oszczędny, ale ciasny dla wysokich kierowców.

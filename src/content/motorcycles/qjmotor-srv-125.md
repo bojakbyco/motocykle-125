@@ -1,0 +1,4 @@
+---
+{"id":"qjmotor-srv-125","slug":"qjmotor-srv-125","brand":"QJMotor","model":"SRV 125","status":"verify","marketYear":2025,"category":"cruiser","useCases":["city","commute","weekend"],"engine":{"capacityCc":125,"powerKw":10.7,"cooling":"liquid","gearbox":6},"dimensions":{},"chassis":{"abs":"dual","frontWheelIn":16,"rearWheelIn":15,"wheelType":"cast"},"equipment":{"led":true},"editorial":{"beginnerFriendliness":4,"passengerComfort":3,"touringReadiness":2,"gravelReadiness":1,"cityAgility":3,"tallRiderFit":2,"partsAvailability":3,"limitations":["Aktualna polska cena i dostępność wymagają potwierdzenia."]},"sourceUrls":["https://www.qjmotor.com/"],"verifiedAt":"2026-08-11","summary":"Niski cruiser dla kierowcy ceniącego swobodną pozycję i stylistykę."}
+---
+Status oferty dealerskiej jest do weryfikacji; dane nie stanowią oferty handlowej.
