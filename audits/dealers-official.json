@@ -1,0 +1,271 @@
+{
+  "schemaVersion": 1,
+  "market": "PL",
+  "verifiedAt": "2026-08-12",
+  "scope": "Initial audit of official manufacturer/importer dealer locators; representative records only, not a complete production seed.",
+  "statusLegend": {
+    "verified": "Current first-party Polish manufacturer/importer source was retrieved.",
+    "partial": "Official locator exists, but dealer payload was unavailable, dynamic, blocked, incomplete, or not fully attributable.",
+    "unverified": "No valid current Polish first-party locator was established."
+  },
+  "locators": [
+    {
+      "brands": ["Aprilia"],
+      "status": "verified",
+      "url": "https://www.aprilia.com/pl_PL/dealer-locator/",
+      "format": "JS map plus crawlable per-dealer HTML detail pages under /dealer-locator/{city}/{slug}/",
+      "acquisition": "Discover detail URLs from rendered map/search indexing, then parse HTML fields: name, telephone, email, address and Google Maps coordinates.",
+      "notes": "Akamai may return 403 to curl/browser; clean extraction of indexed detail pages works."
+    },
+    {
+      "brands": ["Benelli"],
+      "status": "partial",
+      "url": "https://www.benelli.com/pl-pl/stores",
+      "format": "Nuxt/JS store map; HTML shell exposes filters but not Polish store rows",
+      "acquisition": "Render page and inspect Nuxt network requests; importer fallback is official Motor-Land contact/store page.",
+      "notes": "Polish site identifies Motor-Land as local organization; Motor-Land states it is exclusive importer."
+    },
+    {
+      "brands": ["Barton"],
+      "status": "partial",
+      "url": "https://barton-motors.pl/gdzie-kupic",
+      "format": "Concrete CMS HTML plus client-side Google map, country/voivodeship/city and sales/service filters",
+      "acquisition": "Browser/network inspection required; static extraction returns controls but not marker records.",
+      "notes": "Canonical first-party locator confirmed by sitemap."
+    },
+    {
+      "brands": ["Honda"],
+      "status": "partial",
+      "url": "https://www.honda.pl/motorcycles/dealers.html",
+      "format": "AEM/SPA JavaScript application",
+      "acquisition": "Rendered app/network capture required.",
+      "notes": "Current response rendered an empty application body in the audit environment; do not reuse masked or dealer-site-only values from src/lib/dealers.ts."
+    },
+    {
+      "brands": ["Junak", "Cyclone"],
+      "status": "partial",
+      "url": "https://www.junak.com.pl/dealerzy-i-serwis/",
+      "format": "Server-rendered Super Store Finder HTML plus Google map; 215 records visible in HTML",
+      "acquisition": "Parse repeated name/address/region/tel/maps-coordinate blocks from HTML; normalize only explicit postcodes.",
+      "notes": "The locator verifies Junak outlets. It does not label records as Cyclone outlets, so Cyclone coverage remains unverified and must not be inferred. Legacy /dealerzy/ resolves to this page."
+    },
+    {
+      "brands": ["KTM"],
+      "status": "partial",
+      "url": "https://www.ktm.com/en-pl/find-a-dealer.html",
+      "format": "AEM React/Mapbox app with JSON endpoints",
+      "dataUrls": [
+        "https://www.ktm.com/en-pl/find-a-dealer/_jcr_content/root/responsivegrid_1_col/dealersearch.dealers.json",
+        "https://www.ktm.com/en-pl/find-a-dealer/_jcr_content/root/responsivegrid_1_col/dealersearch.qualifications.json"
+      ],
+      "acquisition": "GET JSON; dealer endpoint should return structured records and qualification endpoint returns JSON taxonomy.",
+      "notes": "Dealer endpoint returned {status.success:false, data:\"\"} during audit; qualification endpoint worked. Retry later rather than backfilling from third parties."
+    },
+    {
+      "brands": ["Morbidelli"],
+      "status": "partial",
+      "url": "https://www.morbidelli.com/pl-pl/stores",
+      "format": "Nuxt/JS store map; HTML shell exposes Dealer/Service filters",
+      "acquisition": "Render and capture Nuxt/API traffic; official importer fallback is Motor-Land.",
+      "notes": "No store rows appeared in static extraction."
+    },
+    {
+      "brands": ["QJMotor"],
+      "status": "partial",
+      "url": "https://qjmotor.pl/kontakt/",
+      "format": "WordPress HTML contact/order page",
+      "acquisition": "Parse HTML directly.",
+      "notes": "No nationwide first-party locator was found on qjmotor.pl in this pass. Motor-Land separately states it is exclusive importer and links qjmotor.com.pl; importer/domain ownership should be reconciled before a full import."
+    },
+    {
+      "brands": ["Rieju"],
+      "status": "partial",
+      "url": "https://rieju.com/pl/kontakt",
+      "format": "Server-rendered official country contact page",
+      "acquisition": "Parse Poland contact block from HTML.",
+      "notes": "Official page names Moto-Trip Kraków and phone/email but publishes no street address; /pl/dealers is a 404, so no complete dealer row was emitted."
+    },
+    {
+      "brands": ["Romet"],
+      "status": "partial",
+      "url": "https://romet.pl/find-store",
+      "format": "Magento/JavaScript store locator with Romet/Prorowery and Dealer filters",
+      "acquisition": "Render and inspect Magento XHR/GraphQL; static HTML is an application shell.",
+      "notes": "Page title and search presentation are bicycle-oriented; motorcycle authorization is not established per marker. Do not import generic Romet bicycle shops as motorcycle dealers."
+    },
+    {
+      "brands": ["Suzuki"],
+      "status": "verified",
+      "url": "https://suzuki.pl/moto/dealerzy",
+      "format": "Server-side regional list plus official dealer subdomains; regional URLs use /moto/dealerzy/{regionCode}, e.g. /MA",
+      "acquisition": "Parse list/detail HTML; direct locator requests may return 403, while official dealer subdomain contact pages are crawlable.",
+      "notes": "Search result and first-party dealer subdomain corroborated MonsterBike."
+    },
+    {
+      "brands": ["SYM"],
+      "status": "verified",
+      "url": "https://sympolska.pl/dealerzy_sym/",
+      "format": "WordPress HTML embedding public Google My Maps",
+      "dataUrls": [
+        "https://www.google.com/maps/d/kml?mid=18LVH6zl5gLuJMHv3y1OpcBC7YSdf4y0L&forcekml=1"
+      ],
+      "acquisition": "Download KML for names and coordinates; current KML descriptions are blank, so obtain full addresses/phones only from additional first-party importer pages.",
+      "notes": "KML contained 33 placemarks at audit time."
+    },
+    {
+      "brands": ["Vespa"],
+      "status": "verified",
+      "url": "https://www.vespa.com/pl_PL/dealer-locator/",
+      "format": "JS/legacy map plus crawlable per-dealer HTML detail pages under /dealer-locator/{city}/{slug}/",
+      "acquisition": "Discover detail URLs then parse HTML fields and map coordinates.",
+      "notes": "The locator shell is sparse in static extraction, but official detail pages are complete."
+    },
+    {
+      "brands": ["Yamaha"],
+      "status": "partial",
+      "url": "https://www.yamaha-motor.eu/pl/pl/dealer-locator/",
+      "format": "JavaScript map application with product/service and postcode/city filters",
+      "acquisition": "Render, select motorcycle/service filters and capture network response.",
+      "notes": "No dealer records are in static HTML; do not treat the existing masked src/lib/dealers.ts values as verification."
+    },
+    {
+      "brands": ["Zontes"],
+      "status": "unverified",
+      "url": "https://zontes.pl/",
+      "format": "Invalid source for current brand audit",
+      "acquisition": "None until a current official Polish manufacturer/importer source is identified.",
+      "notes": "Domain redirects through tracking to Ceneo; it is not acceptable first-party dealer evidence."
+    },
+    {
+      "brands": ["Daytona"],
+      "status": "verified",
+      "url": "https://daytonamotors.com.pl/dealerzy/",
+      "format": "WordPress HTML embedding Google My Maps",
+      "acquisition": "Render/download embedded My Maps data; use official contact page for distributor details.",
+      "notes": "Correct brand is Daytona Motors; Dymoto 125 and Dymoto 125 X are Daytona model names, not a separate Dymoto marque. Official Polish distributor: MYMOTO Polska sp. z o.o."
+    }
+  ],
+  "dealers": [
+    {
+      "name": "Liberty Motors Piaseczno",
+      "region": "mazowieckie",
+      "city": "Piaseczno",
+      "address": "Puławska 44D, 05-500 Piaseczno",
+      "phone": "+48 22 129 23 44",
+      "url": "https://www.aprilia.com/pl_PL/dealer-locator/piaseczno/liberty-motors-piaseczno/",
+      "brands": ["Aprilia"],
+      "locationType": "dealer",
+      "sourceUrl": "https://www.aprilia.com/pl_PL/dealer-locator/piaseczno/liberty-motors-piaseczno/",
+      "verifiedAt": "2026-08-12"
+    },
+    {
+      "name": "ScootRacer",
+      "region": "mazowieckie",
+      "city": "Warszawa",
+      "address": "ul. Górczewska 30, 05-077 Warszawa",
+      "phone": "+48 512 233 726",
+      "url": "https://www.vespa.com/pl_PL/dealer-locator/warszawa/scootracer/",
+      "brands": ["Vespa"],
+      "locationType": "dealer",
+      "sourceUrl": "https://www.vespa.com/pl_PL/dealer-locator/warszawa/scootracer/",
+      "verifiedAt": "2026-08-12",
+      "notes": "Postcode/city combination is preserved exactly as published; do not silently correct it."
+    },
+    {
+      "name": "MonsterBike",
+      "region": "mazowieckie",
+      "city": "Warszawa",
+      "address": "ul. Łopuszańska 93, 02-457 Warszawa",
+      "phone": "+48 790 004 477",
+      "url": "https://monsterbike.suzuki.pl/moto/kontakt",
+      "brands": ["Suzuki"],
+      "locationType": "dealer",
+      "sourceUrl": "https://monsterbike.suzuki.pl/moto/kontakt",
+      "verifiedAt": "2026-08-12",
+      "notes": "Official Suzuki dealer subdomain; a second published phone is +48 535 204 443."
+    },
+    {
+      "name": "5 BIEG",
+      "region": "pomorskie",
+      "city": "Słupsk",
+      "address": "Stanisława Leszczyńskiego 8, Słupsk",
+      "phone": "+48 665 919 889",
+      "url": "https://www.junak.com.pl/dealerzy-i-serwis/",
+      "brands": ["Junak"],
+      "locationType": "dealer",
+      "sourceUrl": "https://www.junak.com.pl/dealerzy-i-serwis/",
+      "verifiedAt": "2026-08-12",
+      "notes": "Official locator does not publish a postcode for this row. It explicitly lists a Junak RSL 125 ABS test vehicle."
+    },
+    {
+      "name": "ADVENTURE TEAM",
+      "region": "warmińsko-mazurskie",
+      "city": "Elbląg",
+      "address": "E. Kwiatkowskiego 2A, 82-300 Elbląg",
+      "phone": "+48 721 222 247",
+      "url": "https://www.junak.com.pl/dealerzy-i-serwis/",
+      "brands": ["Junak"],
+      "locationType": "dealer",
+      "sourceUrl": "https://www.junak.com.pl/dealerzy-i-serwis/",
+      "verifiedAt": "2026-08-12"
+    },
+    {
+      "name": "AR Moto",
+      "region": "małopolskie",
+      "city": "Bochnia",
+      "address": "Brzeska 51a, Bochnia",
+      "phone": "+48 578 867 000",
+      "url": "https://www.junak.com.pl/dealerzy-i-serwis/",
+      "brands": ["Junak"],
+      "locationType": "dealer",
+      "sourceUrl": "https://www.junak.com.pl/dealerzy-i-serwis/",
+      "verifiedAt": "2026-08-12",
+      "notes": "Sales number retained; official locator also publishes service +48 570 802 384 and no postcode."
+    },
+    {
+      "name": "MOTOR-LAND Łomianki",
+      "region": "mazowieckie",
+      "city": "Dziekanów Nowy",
+      "address": "ul. Kolejowa 362/364, 05-092 Dziekanów Nowy",
+      "phone": "+48 22 670 98 01",
+      "url": "https://www.motor-land.com.pl/motor-land/nasze-salony/salon-lomianki/",
+      "brands": ["Benelli", "Morbidelli", "QJMotor"],
+      "locationType": "importer-dealer",
+      "sourceUrl": "https://www.motor-land.com.pl/",
+      "verifiedAt": "2026-08-12",
+      "notes": "Motor-Land explicitly states it is exclusive importer of all three brands and publishes this salon/contact."
+    },
+    {
+      "name": "Moto Rakowski",
+      "region": "mazowieckie",
+      "city": "Konstancin-Jeziorna",
+      "address": "ul. Długa 8a, 05-510 Konstancin-Jeziorna",
+      "phone": "+48 723 133 170",
+      "url": "https://qjmotor.pl/kontakt/",
+      "brands": ["QJMotor"],
+      "locationType": "dealer-order-point",
+      "sourceUrl": "https://qjmotor.pl/kontakt/",
+      "verifiedAt": "2026-08-12",
+      "notes": "Phone is the first explicitly published vehicle-order number; page publishes three additional order contacts."
+    },
+    {
+      "name": "MYMOTO Polska sp. z o.o.",
+      "region": "małopolskie",
+      "city": "Kraków",
+      "address": "ul. Opolska 18, 31-323 Kraków",
+      "phone": "+48 513 445 789",
+      "url": "https://daytonamotors.com.pl/kontakt/",
+      "brands": ["Daytona", "SYM"],
+      "locationType": "distributor",
+      "sourceUrl": "https://daytonamotors.com.pl/kontakt/",
+      "verifiedAt": "2026-08-12",
+      "notes": "Official Daytona page labels MYMOTO as Polish distributor and shows Daytona and SYM in its Polish distribution portfolio; this is not asserted to be a retail dealer."
+    }
+  ],
+  "omissions": [
+    {"brands": ["Barton", "Honda", "KTM", "Romet", "Yamaha"], "reason": "Official locator confirmed but no complete first-party dealer record was retrievable in this pass."},
+    {"brands": ["Rieju"], "reason": "Official Polish contact names Moto-Trip Kraków and +48 798 945 646 but omits a full street address."},
+    {"brands": ["Cyclone"], "reason": "Junak locator does not establish Cyclone authorization per outlet."},
+    {"brands": ["Zontes"], "reason": "No valid current official Polish source identified."}
+  ]
+}

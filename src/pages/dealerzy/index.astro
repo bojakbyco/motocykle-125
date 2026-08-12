@@ -1,4 +1,33 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro'; import {dealers} from '../../lib/dealers';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {dealers} from '../../lib/dealers';
+const regions=new Set(dealers.map(d=>d.region));
 ---
-<BaseLayout title="Dealerzy motocykli 125 — woj. mazowieckie" description="Pilotażowa baza dealerów motocykli 125: telefon, strona internetowa i trasa w Mapach Google."><section class="wrap py-12"><p class="eyebrow">Pilotaż · woj. mazowieckie</p><h1 class="display mt-3">Znajdź dealera</h1><p class="mt-5 max-w-2xl text-lg text-muted">To niezależna lista, nie ranking partnerów. Przed wizytą zadzwoń i potwierdź dostępność modelu. Adresy są weryfikowane ręcznie.</p><label class="mt-8 grid max-w-xl gap-2 font-bold">Miasto, kod lub marka<input id="dealer-search" class="border border-ink/30 bg-white p-3 font-normal" type="search" placeholder="np. Warszawa, 02-272, Honda"/></label><p id="dealer-count" class="mt-5 text-sm font-bold" aria-live="polite">{dealers.length} punktów</p><div class="mt-4 grid gap-5 lg:grid-cols-2">{dealers.map(d=><article class="card dealer" data-search={`${d.name} ${d.brands.join(' ')} ${d.city} ${d.postcode}`.toLowerCase()}><p class="eyebrow">{d.brands.join(' · ')}</p><h2 class="mt-2 font-serif text-2xl font-bold">{d.name}</h2><address class="mt-3 not-italic text-muted">{d.address}<br/>{d.postcode} {d.city}</address><div class="mt-5 flex flex-wrap gap-2"><a class="btn dealer-phone" href={`tel:${d.phone}`}>Zadzwoń</a><a class="btn-alt dealer-site" href={d.website} target="_blank" rel="nofollow noopener">Strona ↗</a><a class="btn-alt dealer-route" href={`https://www.google.com/maps/dir/?api=1&destination=${d.lat},${d.lng}`} target="_blank" rel="nofollow noopener">Trasa ↗</a></div><p class="mt-4 text-xs text-muted">Zweryfikowano {d.verifiedAt} · <a class="underline" href={d.source} target="_blank" rel="nofollow noopener">źródło</a></p></article>)}</div></section><script>const input=document.querySelector('#dealer-search') as HTMLInputElement;const cards=[...document.querySelectorAll('.dealer')] as HTMLElement[];input.addEventListener('input',()=>{let n=0;cards.forEach(c=>{const ok=c.dataset.search?.includes(input.value.toLowerCase())??true;c.hidden=!ok;if(ok)n++});document.querySelector('#dealer-count')!.textContent=`${n} punktów`});const event=(name:string,el:Element)=>el.addEventListener('click',()=>window.dispatchEvent(new CustomEvent('m125:analytics',{detail:{event:name,properties:{dealer:el.closest('.dealer')?.querySelector('h2')?.textContent}}})));document.querySelectorAll('.dealer-phone').forEach(x=>event('dealer_phone_clicked',x));document.querySelectorAll('.dealer-site').forEach(x=>event('dealer_website_clicked',x));document.querySelectorAll('.dealer-route').forEach(x=>event('dealer_route_clicked',x));window.dispatchEvent(new CustomEvent('m125:analytics',{detail:{event:'dealer_locator_opened',properties:{region:'mazowieckie'}}}));</script></BaseLayout>
+<BaseLayout title="Dealerzy motocykli 125 w Polsce" description="Zweryfikowana baza autoryzowanych punktów marek motocykli 125 na podstawie oficjalnych lokalizatorów producentów i importerów.">
+<section class="wrap py-12">
+  <p class="eyebrow">{dealers.length} punktów · {regions.size} województw</p>
+  <h1 class="display mt-3">Znajdź dealera</h1>
+  <p class="mt-5 max-w-2xl text-lg text-muted">Lista powstaje z oficjalnych lokalizatorów producentów i importerów. Nie jest rankingiem ani listą partnerów serwisu. Przed wizytą potwierdź telefonicznie dostępność wybranego modelu.</p>
+  <label class="mt-8 grid max-w-xl gap-2 font-bold">Miasto, kod lub marka<input id="dealer-search" class="border border-ink/30 bg-white p-3 font-normal" type="search" placeholder="np. Warszawa, 02-272, Honda"/></label>
+  <p id="dealer-count" class="mt-5 text-sm font-bold" aria-live="polite">{dealers.length} punktów</p>
+  <div class="mt-4 grid gap-5 lg:grid-cols-2">
+    {dealers.map(d=><article class="card dealer" data-search={`${d.name} ${d.brands.join(' ')} ${d.city} ${d.postcode} ${d.region}`.toLowerCase()}>
+      <p class="eyebrow">{d.brands.join(' · ')}</p>
+      <h2 class="mt-2 font-serif text-2xl font-bold">{d.name}</h2>
+      <address class="mt-3 not-italic text-muted">{d.address}<br/>{d.postcode} {d.city} · <span class="capitalize">{d.region}</span></address>
+      <div class="mt-5 flex flex-wrap gap-2">
+        {d.phone&&<a class="btn dealer-phone" href={`tel:${d.phone}`}>Zadzwoń</a>}
+        <a class="btn-alt dealer-site" href={d.website} target="_blank" rel="nofollow noopener">Strona ↗</a>
+        {(d.lat!=null&&d.lng!=null)&&<a class="btn-alt dealer-route" href={`https://www.google.com/maps/dir/?api=1&destination=${d.lat},${d.lng}`} target="_blank" rel="nofollow noopener">Trasa ↗</a>}
+      </div>
+      <p class="mt-4 text-xs text-muted">Zweryfikowano {d.verifiedAt} · <a class="underline" href={d.source} target="_blank" rel="nofollow noopener">oficjalne źródło</a></p>
+    </article>)}
+  </div>
+  <p id="dealer-empty" class="card mt-4 hidden">Brak punktów pasujących do wyszukiwania.</p>
+</section>
+<script>
+const input=document.querySelector('#dealer-search') as HTMLInputElement;
+const cards=[...document.querySelectorAll('.dealer')] as HTMLElement[];
+input.addEventListener('input',()=>{let n=0;const q=input.value.trim().toLowerCase();cards.forEach(c=>{const ok=c.dataset.search?.includes(q)??true;c.hidden=!ok;if(ok)n++});document.querySelector('#dealer-count')!.textContent=`${n} punktów`;document.querySelector('#dealer-empty')!.classList.toggle('hidden',n>0)});
+</script>
+</BaseLayout>

@@ -1,0 +1,40 @@
+import json
+from pathlib import Path
+
+ROOT=Path('/root/motocykle-125/src/content/motorcycles')
+DATE='2026-08-12'
+
+def editorial(beginner,passenger,touring,gravel,city,tall,parts,limitation):
+ return {'beginnerFriendliness':beginner,'passengerComfort':passenger,'touringReadiness':touring,'gravelReadiness':gravel,'cityAgility':city,'tallRiderFit':tall,'partsAvailability':parts,'limitations':[limitation]}
+def price(amount,kind='msrp',regular=None,note=None):
+ p={'amount':amount,'currency':'PLN','asOf':DATE,'kind':kind}
+ if regular:p['regularAmount']=regular
+ if note:p['note']=note
+ return p
+
+def base(slug,brand,model,category,use,engine,dimensions,chassis,equipment,ed,sources,summary,price_data=None,market=None,production=None):
+ d={'id':slug,'slug':slug,'brand':brand,'model':model,'status':'current-pl','category':category,'useCases':use,'engine':engine,'dimensions':dimensions,'chassis':chassis,'equipment':equipment,'editorial':ed,'sourceUrls':sources,'verifiedAt':DATE,'summary':summary}
+ if price_data:d['price']=price_data
+ if market:d['marketYear']=market
+ if production:d['productionYear']=production
+ return d
+
+models=[
+base('junak-rx2-125','Junak','RX2 125 ABS','adventure',['commute','weekend','touring','gravel'],{'capacityCc':124,'powerKw':11,'cooling':'liquid'},{'weightKg':160,'weightDefinition':'masa własna','seatHeightMm':820,'tankL':14},{'abs':'dual','absNote':'ABS potwierdzony na obu kołach; producent nie podaje liczby kanałów','tractionControl':True,'frontWheelIn':19,'rearWheelIn':17},{'usb':True,'luggageIncluded':True,'handguards':True},editorial(3,4,5,3,3,4,4,'Masa 160 kg może być odczuwalna podczas manewrów parkingowych.'),['https://www.junak.com.pl/katalog/motocykle/rx2125abs/'],'Turystyczne adventure z trzema kuframi w standardzie i silnikiem o mocy 11 kW.',price(15999)),
+base('sym-nhr-125','SYM','NHR 125','adventure',['commute','weekend','touring','gravel'],{'capacityCc':124.7,'powerKw':10.3,'cooling':'liquid','gearbox':6},{'weightKg':163,'weightDefinition':'waga (pełne płyny)','seatHeightMm':815,'tankL':14},{'abs':'dual','absNote':'Dwukanałowy ABS Continental','frontWheelIn':19,'rearWheelIn':17,'wheelType':'spoked'},{'led':True,'usb':True,'windscreen':True,'handguards':True},editorial(3,4,4,4,3,4,4,'Przed zakupem warto potwierdzić u dealera dostępność bieżącej partii.'),['https://sympolska.pl/model/nhr-125/','https://sympolska.pl/motocykle/'],'Adventure z kołami 19/17, dwukanałowym ABS i bogatym wyposażeniem standardowym.',price(12999),production=2026),
+base('daytona-dymoto-125','DAYTONA Motors','DYMOTO 125 ABS','adventure',['commute','weekend','touring'],{'capacityCc':125,'torqueNm':11.2,'cooling':'liquid','gearbox':6},{'weightKg':160,'weightDefinition':'waga — definicja niepodana','seatHeightMm':775,'groundClearanceMm':170,'tankL':14},{'abs':'dual','absNote':'Dwukanałowy ABS','frontWheelIn':17,'rearWheelIn':17},{'led':True,'usb':True,'windscreen':True},editorial(4,4,4,2,3,3,3,'Oficjalne źródło podaje moc tylko w KM, dlatego katalog nie pokazuje wartości w kW.'),['https://daytonamotors.com.pl/dymoto-125/','https://daytonamotors.com.pl/'],'Nisko zawieszone turystyczne 125 z dwukanałowym ABS, szybą i silnikiem chłodzonym cieczą.',price(13999),market=2026),
+base('romet-zxt-125','Romet','ZXT 125','naked',['city','commute','weekend'],{'capacityCc':124,'cooling':'air','gearbox':5},{'weightKg':124,'weightDefinition':'waga; opis producenta używa też określenia „masa własna”','tankL':11},{'abs':'unverified','frontWheelIn':18,'rearWheelIn':18},{},editorial(5,3,2,1,5,3,5,'Producent nie publikuje wysokości siedzenia ani mocy w kW.'),['https://rometmotors.pl/motocykl-romet-zxt-125-2026.html'],'Prosty, lekki motocykl użytkowy z pięciobiegową skrzynią i kołami 18 cali.',price(6999),market=2026),
+base('romet-adv-125-pro','Romet','ADV 125 PRO','adventure',['commute','weekend','gravel'],{'capacityCc':124,'powerKw':7.5,'cooling':'air','gearbox':5},{'weightKg':138,'weightDefinition':'waga — definicja niepodana','seatHeightMm':820,'tankL':15},{'abs':'unverified','frontWheelIn':18,'rearWheelIn':18},{'luggageIncluded':True},editorial(4,3,3,3,3,3,5,'Hamulce nie mają potwierdzonego przez producenta układu ABS.'),['https://rometmotors.pl/motocykl-romet-adv-125-pro-2026-40481.html'],'Budżetowe adventure z dużym zbiornikiem, bagażnikami i osłonami.',price(7199,'promotional',8199),market=2026),
+base('romet-chart-125','Romet','CHART 125','scrambler',['city','commute','weekend'],{'capacityCc':124,'powerKw':7.9,'cooling':'air'},{'weightKg':120,'weightDefinition':'waga — definicja niepodana','tankL':11},{'abs':'unverified','frontWheelIn':18,'rearWheelIn':18,'wheelType':'spoked'},{},editorial(5,3,2,2,4,3,5,'Oficjalna karta nie publikuje liczby przełożeń ani wysokości siedzenia.'),['https://rometmotors.pl/motocykl-romet-chart-125-2026.html'],'Klasyczna stylistyka, szprychowe koła i prosta konstrukcja do miasta oraz spokojnych tras.',price(7499),market=2026),
+base('romet-division-125-sr-air','Romet','DIVISION 125 SR AIR','naked',['city','commute','weekend'],{'capacityCc':125,'cooling':'air'},{'weightKg':138,'weightDefinition':'waga — definicja niepodana','seatHeightMm':820,'tankL':13},{'abs':'unverified','frontWheelIn':17,'rearWheelIn':17},{},editorial(4,3,2,1,4,4,5,'Oficjalna karta jest niespójna w sprawie mocy i pojemności zbiornika; zachowano wartość z tabeli technicznej.'),['https://rometmotors.pl/motocykl-romet-division-125-sr-air-22837.html'],'Naked z widelcem USD i centralnym amortyzatorem, nadal dostępny jako rocznik 2025.',price(8799),market=2025),
+base('romet-crs-125','Romet','CRS 125','dual-sport',['commute','weekend','gravel','light-offroad'],{'capacityCc':124,'cooling':'liquid','gearbox':6},{'weightKg':140,'weightDefinition':'waga — definicja niepodana','seatHeightMm':890,'tankL':10},{'abs':'unverified','frontWheelIn':17,'rearWheelIn':17},{},editorial(2,1,2,4,3,5,5,'Wysokie siedzenie 890 mm ogranicza dostępność dla niższych kierowców.'),['https://rometmotors.pl/motocykl-romet-crs-125-39614.html'],'Wysokie supermoto z chłodzeniem cieczą i opcjonalnym zestawem enduro.',price(11499),market=2026),
+base('romet-tank-125','Romet','TANK 125','scooter',['city','commute'],{'capacityCc':124.6,'cooling':'air','transmission':'cvt'},{'weightKg':102,'weightDefinition':'waga — definicja niepodana','seatHeightMm':740,'tankL':6.5},{'abs':'unverified','frontWheelIn':12,'rearWheelIn':12},{'led':True,'handguards':True},editorial(5,3,1,1,5,2,5,'Producent nie deklaruje ABS ani CBS.'),['https://rometmotors.pl/skuter-romet-tank-125-39152.html'],'Lekki skuter miejski w stylistyce adventure z niskim siedzeniem i CVT.',price(6499),market=2026),
+base('romet-a-max-125','Romet','A MAX 125','scooter',['city','commute','weekend'],{'capacityCc':125,'cooling':'liquid','transmission':'cvt'},{'weightKg':150,'weightDefinition':'waga według tabeli; opis producenta podaje konfliktowo 136 kg','seatHeightMm':810,'tankL':10.5},{'abs':'unverified','frontWheelIn':13,'rearWheelIn':13},{'led':True,'windscreen':True},editorial(4,4,3,1,4,4,5,'Producent publikuje sprzeczne wartości masy 150 i 136 kg.'),['https://rometmotors.pl/skuter-romet-a-max-125-2026.html'],'Większy skuter GT z chłodzeniem cieczą, bezkluczykowym uruchamianiem i CVT.',price(10499),market=2026),
+base('romet-777-125','Romet','777 125','scooter',['city','commute'],{'capacityCc':124.6,'cooling':'air','transmission':'cvt'},{'weightKg':115,'weightDefinition':'waga — definicja niepodana','seatHeightMm':785,'tankL':5.6},{'abs':'unverified','frontWheelIn':12,'rearWheelIn':12},{'led':True,'luggageIncluded':True},editorial(5,3,1,1,5,3,5,'Producent nie deklaruje systemu ABS ani CBS.'),['https://rometmotors.pl/skuter-romet-777-125-39551.html'],'Miejski skuter z CVT, oświetleniem LED i kufrem w standardzie.',price(6999),market=2026),
+]
+
+for d in models:
+ p=ROOT/f"{d['slug']}.md"
+ if p.exists(): raise RuntimeError(f'Already exists: {p}')
+ p.write_text('---\n'+json.dumps(d,ensure_ascii=False,separators=(',',':'))+'\n---\n'+d['summary']+' Dane techniczne i status oferty sprawdzono w oficjalnym źródle producenta lub importera.\n')
+print(f'Added {len(models)} verified models')
