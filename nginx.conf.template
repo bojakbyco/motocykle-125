@@ -4,6 +4,9 @@ server {
   root /usr/share/nginx/html;
   index index.html;
   location = /health { access_log off; add_header Content-Type text/plain; return 200 'ok\n'; }
-  location / { try_files $uri $uri/ $uri.html =404; }
+  # Resolve Astro's directory-style routes directly to index.html. Checking
+  # $uri first would match the directory and make nginx redirect to its
+  # internal container port (8080), breaking every clean menu URL.
+  location / { try_files $uri/index.html $uri.html $uri =404; }
   location ~* \.(css|js|svg|png|jpg|jpeg|webp|woff2)$ { expires 7d; add_header Cache-Control "public, immutable"; try_files $uri =404; }
 }
