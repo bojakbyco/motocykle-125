@@ -18,4 +18,10 @@ export type Motorcycle = {
   summary: string;
 };
 
-export type QuizAnswers = { licence:'b3'|'a1'|'other'; use:'city'|'commute'|'weekend'|'touring'|'gravel'|'light-offroad'; surface:'road'|'mixed'|'offroad'; budget:'10'|'15'|'20'|'25'|'open'; height:'short'|'average'|'tall'|'very-tall'; passenger:'solo'|'sometimes'|'touring'; priority:'beginner'|'performance'|'cost'|'upright'|'style'|'offroad' };
+export type QuizAnswers = {
+  ridingProfile: 'city' | 'weekend' | 'touring' | 'mixed' | 'offroad';
+  budget: '12' | '18' | 'open';
+  height: 'short' | 'average' | 'tall' | 'very-tall';
+  passenger: 'solo' | 'sometimes' | 'touring';
+  vehicleType: 'motorcycle' | 'scooter' | 'either';
+};

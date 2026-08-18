@@ -1,28 +1,83 @@
-import type { Motorcycle, QuizAnswers } from '../types';
+import type {Motorcycle, QuizAnswers} from '../types';
+import {budgetLimits, ridingProfiles} from './quiz-config';
 
-const budgets = { '10':10000, '15':15000, '20':20000, '25':25000, open:Infinity } as const;
-const surfaces:Record<QuizAnswers['surface'], Motorcycle['category'][]> = { road:['naked','sport','scrambler','cruiser','scooter','adventure'], mixed:['adventure','dual-sport','scrambler'], offroad:['dual-sport','enduro','adventure'] };
-const priorityField:Record<QuizAnswers['priority'],keyof Motorcycle['editorial']|null> = { beginner:'beginnerFriendliness', performance:null, cost:null, upright:'touringReadiness', style:null, offroad:'gravelReadiness' };
-const five = (n:number) => n/5;
+const roadCategories: Motorcycle['category'][] = [
+  'naked',
+  'sport',
+  'scrambler',
+  'cruiser',
+  'scooter',
+  'adventure',
+];
+const mixedCategories: Motorcycle['category'][] = ['adventure', 'dual-sport', 'scrambler'];
+const offroadCategories: Motorcycle['category'][] = ['dual-sport', 'enduro', 'adventure'];
 
-export function hardFilter(m:Motorcycle,a:QuizAnswers) {
-  if (a.licence === 'other' || m.status === 'used-reference' || m.status === 'verify') return false;
-  if (m.price && m.price.amount > budgets[a.budget]) return false;
-  if (a.surface === 'offroad' && !surfaces.offroad.includes(m.category)) return false;
+function vehicleTypeMatches(motorcycle: Motorcycle, preference: QuizAnswers['vehicleType']) {
+  if (preference === 'either') return true;
+  return preference === 'scooter' ? motorcycle.category === 'scooter' : motorcycle.category !== 'scooter';
+}
+
+export function hardFilter(motorcycle: Motorcycle, answers: QuizAnswers) {
+  if (motorcycle.status === 'used-reference' || motorcycle.status === 'verify') return false;
+  if (motorcycle.price && motorcycle.price.amount > budgetLimits[answers.budget]) return false;
+  if (!vehicleTypeMatches(motorcycle, answers.vehicleType)) return false;
+  if (answers.ridingProfile === 'offroad' && !offroadCategories.includes(motorcycle.category)) return false;
   return true;
 }
-export function scoreMotorcycle(m:Motorcycle,a:QuizAnswers) {
-  const use = m.useCases.includes(a.use) ? 1 : m.useCases.some(u => ['city','commute'].includes(u) && ['city','commute'].includes(a.use)) ? .7 : .25;
-  const surface = surfaces[a.surface].includes(m.category) ? 1 : a.surface === 'road' && m.category !== 'enduro' ? .7 : .2;
-  const limit=budgets[a.budget]; const budget = !m.price ? .55 : limit === Infinity ? .9 : m.price.amount<=limit ? Math.max(.6,1-m.price.amount/limit*.25) : 0;
-  const ergoRating = a.height === 'tall' || a.height === 'very-tall' ? m.editorial.tallRiderFit : m.editorial.beginnerFriendliness;
-  const ergonomics=five(ergoRating);
-  const luggage=a.passenger==='solo' ? .8 : a.passenger==='sometimes' ? five(m.editorial.passengerComfort) : (five(m.editorial.passengerComfort)+five(m.editorial.touringReadiness))/2;
-  const experience=a.priority==='beginner' ? five(m.editorial.beginnerFriendliness) : .75;
-  const field=priorityField[a.priority]; const priority=field ? five(m.editorial[field] as number) : a.priority==='performance' ? Math.min(1,(m.engine.powerKw ?? 0)/11) : a.priority==='cost' ? (m.price ? Math.max(.3,1-m.price.amount/25000) : .5) : .75;
-  const raw=.27*use+.18*surface+.16*budget+.12*ergonomics+.10*luggage+.09*experience+.08*priority;
-  return Math.max(0,Math.min(100,Math.round(raw*20)*5));
+
+function profileScore(motorcycle: Motorcycle, answers: QuizAnswers) {
+  const profile = ridingProfiles[answers.ridingProfile];
+  const directUse = motorcycle.useCases.includes(profile.useCase);
+  const relatedCityUse = profile.useCase === 'city' && motorcycle.useCases.includes('commute');
+  const useScore = directUse ? 1 : relatedCityUse ? 0.8 : 0.25;
+  const categories = profile.surface === 'road'
+    ? roadCategories
+    : profile.surface === 'mixed'
+      ? mixedCategories
+      : offroadCategories;
+  const surfaceScore = categories.includes(motorcycle.category)
+    ? 1
+    : profile.surface === 'road' && motorcycle.category !== 'enduro'
+      ? 0.7
+      : 0.2;
+  return (useScore * 0.65) + (surfaceScore * 0.35);
 }
-export function recommend(models:Motorcycle[],answers:QuizAnswers) {
-  return models.filter(m=>hardFilter(m,answers)).map(m=>({motorcycle:m,score:scoreMotorcycle(m,answers)})).sort((a,b)=>b.score-a.score || a.motorcycle.brand.localeCompare(b.motorcycle.brand,'pl')).slice(0,4);
+
+function budgetScore(motorcycle: Motorcycle, answers: QuizAnswers) {
+  if (!motorcycle.price) return 0.55;
+  const limit = budgetLimits[answers.budget];
+  if (limit === Infinity) return 0.9;
+  return Math.max(0.65, 1 - (motorcycle.price.amount / limit) * 0.25);
+}
+
+function ergonomicsScore(motorcycle: Motorcycle, height: QuizAnswers['height']) {
+  const seat = motorcycle.dimensions.seatHeightMm;
+  if (!seat) return 0.55;
+  if (height === 'short') return seat <= 790 ? 1 : seat <= 820 ? 0.7 : 0.35;
+  if (height === 'average') return seat >= 760 && seat <= 850 ? 1 : 0.65;
+  if (height === 'tall') return seat >= 800 ? 1 : seat >= 770 ? 0.7 : 0.4;
+  return seat >= 840 ? 1 : seat >= 800 ? 0.7 : 0.35;
+}
+
+function passengerScore(motorcycle: Motorcycle, passenger: QuizAnswers['passenger']) {
+  if (passenger === 'solo') return 0.85;
+  if (passenger === 'sometimes') return motorcycle.editorial.passengerComfort / 5;
+  return (motorcycle.editorial.passengerComfort + motorcycle.editorial.touringReadiness) / 10;
+}
+
+export function scoreMotorcycle(motorcycle: Motorcycle, answers: QuizAnswers) {
+  const raw =
+    0.45 * profileScore(motorcycle, answers) +
+    0.2 * budgetScore(motorcycle, answers) +
+    0.2 * ergonomicsScore(motorcycle, answers.height) +
+    0.15 * passengerScore(motorcycle, answers.passenger);
+  return Math.max(0, Math.min(100, Math.round(raw * 20) * 5));
+}
+
+export function recommend(models: Motorcycle[], answers: QuizAnswers) {
+  return models
+    .filter((motorcycle) => hardFilter(motorcycle, answers))
+    .map((motorcycle) => ({motorcycle, score: scoreMotorcycle(motorcycle, answers)}))
+    .sort((a, b) => b.score - a.score || a.motorcycle.brand.localeCompare(b.motorcycle.brand, 'pl'))
+    .slice(0, 4);
 }
